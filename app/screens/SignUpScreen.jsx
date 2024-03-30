@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet ,Text } from 'react-native';
+import { COLORS } from '../../Data/Colors';
+import InputField from '../../Components/FormElements/InputField';
 
 const SignUpScreen = () => {
     const [email, setEmail] = useState('');
@@ -12,19 +14,9 @@ const SignUpScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TextInput
-                style={styles.input}
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Password"
-                secureTextEntry
-                value={password}
-                onChangeText={setPassword}
-            />
+            <Text style={styles.title}>Sign Up</Text>
+            <InputField placeholder={"ceva"} value={email} onChangeText={setEmail}></InputField>
+            <InputField placeholder={"ceva"} value={password} onChangeText={setPassword}></InputField>
             <Button title="Sign Up" onPress={handleSignUp} />
         </View>
     );
@@ -32,19 +24,17 @@ const SignUpScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: COLORS.neutral,
+        height: '100%',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
     },
-    input: {
-        width: '100%',
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 12,
-        paddingHorizontal: 8,
+    title: {
+        color: COLORS.primary,
+        fontSize: 24,
+        marginBottom: 16,
     },
 });
-
 export default SignUpScreen;

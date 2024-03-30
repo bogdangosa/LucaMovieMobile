@@ -4,6 +4,7 @@ import BigMovieCard from './Components/Cards/BigMovieCard';
 import { dummiData } from './Data/dummy_movie_data';
 import AuthStack from './AuthStack';
 import { NavigationContainer } from '@react-navigation/native';
+import { COLORS } from './Data/Colors';
 
 export default function App() {
   return (
@@ -11,22 +12,15 @@ export default function App() {
       <NavigationContainer>
         <AuthStack/>
       </NavigationContainer>
-      <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  sub_title:{
-    color: 'white',
-    fontSize: 28,
-  },
   container: {
     flex: 1,
-    backgroundColor: '#222',
+    backgroundColor: COLORS.neutral,
     alignItems: 'start',
-    paddingTop: 50,
-    paddingHorizontal: 20,
     justifyContent: 'start',
   },
 });
