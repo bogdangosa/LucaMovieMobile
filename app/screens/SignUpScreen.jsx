@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet ,Text } from 'react-native';
 import { COLORS } from '../../Data/Colors';
 import InputField from '../../Components/FormElements/InputField';
+import SimpleButton from '../../Components/Buttons/SimpleButton';
 
 const SignUpScreen = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [Username, setUsername] = useState('');
+    const [Email, setEmail] = useState('');
+    const [Password, setPassword] = useState('');
+    const [PasswordConfirm, setPasswordConfirm] = useState('');
 
     const handleSignUp = () => {
         // Implement your signup logic here
@@ -14,10 +17,13 @@ const SignUpScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Sign Up</Text>
-            <InputField placeholder={"ceva"} value={email} onChangeText={setEmail}></InputField>
-            <InputField placeholder={"ceva"} value={password} onChangeText={setPassword}></InputField>
-            <Button title="Sign Up" onPress={handleSignUp} />
+            <View>
+                <Text style={styles.title}>Login</Text>
+                <Text style={[styles.title,styles.accent]}>Sign Up</Text>
+            </View>
+            <InputField label="Email" placeholder="Enter your email adress" value={Email} onChangeText={setEmail}></InputField>
+            <InputField label="Password" placeholder="Enter your password" value={Password} onChangeText={setPassword}></InputField>
+            <SimpleButton title="Sign Up" onPress={handleSignUp} />
         </View>
     );
 };
@@ -35,6 +41,9 @@ const styles = StyleSheet.create({
         color: COLORS.primary,
         fontSize: 24,
         marginBottom: 16,
+    },
+    accent: {
+        color: COLORS.accent,
     },
 });
 export default SignUpScreen;
