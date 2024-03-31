@@ -5,15 +5,15 @@ import SimpleButton from '../../Components/Buttons/SimpleButton';
 import { COLORS } from '../../Data/Colors';
 import axios from 'axios';
 
-const LoginScreen = ({navigation}) => {
+const ForgotPasswordScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
 
     const handleLogin = async() => {
         try {
             const response = await axios.post('http://188.24.126.250:5000/api/resetPassword', {
                 email: email,
-                password: password
+                password: newPassword
             });
             console.log("Login successful:", response.data);
         } catch (error) {
@@ -25,16 +25,15 @@ const LoginScreen = ({navigation}) => {
     return (
         <View style={styles.login_container}>
             <View style={styles.top_bar_container}>
-                <Text style={[styles.title, styles.accent]}>Login</Text>
-                <Text style={styles.title} onPress={()=>navigation.navigate("SignUp")}>Sign Up</Text>
+                <Text style={[styles.title, styles.accent]}>Forgot password</Text>
             </View>
             <InputField label="Email" placeholder="Enter your email adress" value={email} onChangeText={setEmail}></InputField>
-            <InputField label="Password" placeholder="Enter your password" value={password} onChangeText={setPassword}></InputField>
-            <SimpleButton title="Log In" onPress={handleLogin} />
+            <InputField label="New password" placeholder="Enter your new password" value={email} onChangeText={setEmail}></InputField>
+            <SimpleButton title="Reset password" onPress={handleLogin} />
             <View style={styles.bottom_text_container}>
                 <Text style={styles.text} onPress={()=>navigation.navigate("ForgotPassword")}> 
-                    don't remember your password? <Text style={[styles.text, styles.accent]} onPress={()=>navigation.navigate("ForgotPassword")}>
-                            reset here
+                    you're just dumb? <Text style={[styles.text, styles.accent]} onPress={()=>navigation.navigate("Login")}>
+                            login normally here
                         </Text>
                 </Text>
             </View>  
@@ -46,9 +45,6 @@ const styles = StyleSheet.create({
     top_bar_container: {
         flexDirection: 'row',
         gap: 16,
-    },
-    bottom_text_container:{
-        flexDirection: 'column',
     },
     login_container: {
         backgroundColor: COLORS.neutral,
@@ -73,4 +69,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default ForgotPasswordScreen;
