@@ -20,6 +20,8 @@ const useUser = () => {
                 password: data.password
             });
             console.log("Login successful:", response.data);
+            setUser({userId:response.data.useruserId});
+
         } catch (error) {
             console.error("Error occurred during login:", error);
         }
