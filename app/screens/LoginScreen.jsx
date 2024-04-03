@@ -4,22 +4,21 @@ import InputField from '../../Components/FormElements/InputField';
 import SimpleButton from '../../Components/Buttons/SimpleButton';
 import { COLORS } from '../../Data/Colors';
 import axios from 'axios';
+import { useUserUpdateContext } from '../contexts/UserContext';
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const updateUser = useUserUpdateContext();
 
     const handleLogin = async() => {
-        try {
-            const response = await axios.post('http://188.24.126.250:5000/api/resetPassword', {
-                email: email,
-                password: password
-            });
-            console.log("Login successful:", response.data);
-        } catch (error) {
-            console.error("Error occurred during login:", error);
-        }
-        console.log("response");
+        updateUser({
+            command:"login",
+            data:{
+                email:email,
+                password:password,
+            }
+        })
     };
 
     return (

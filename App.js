@@ -5,13 +5,15 @@ import { dummiData } from './Data/dummy_movie_data';
 import AuthStack from './AuthStack';
 import { NavigationContainer } from '@react-navigation/native';
 import { COLORS } from './Data/Colors';
+import { UserProvider } from './app/contexts/UserContext';
+import AppLayout from './AppLayout';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <NavigationContainer>
-        <AuthStack/>
-      </NavigationContainer>
+        <UserProvider>
+          <AppLayout />
+        </UserProvider>
     </View>
   );
 }
