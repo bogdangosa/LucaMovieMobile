@@ -14,9 +14,8 @@ const useUser = () => {
 
     const loginUser = async (data) => {
         try {
-            console.log("process.env.REACT_APP_SERVER_ADRESS");
-            console.log(process.env.REACT_APP_SERVER_ADRESS);
-            const response = await axios.post(process.env.REACT_APP_SERVER_ADRESS+'/api/login', {
+            console.log(process.env.EXPO_SERVER_ADRESS);
+            const response = await axios.post(process.env.EXPO_SERVER_ADRESS+'/api/login', {
                 email: data.email,
                 password: data.password
             });
