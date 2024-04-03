@@ -1,11 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import SimpleButton from "../../Components/Buttons/SimpleButton";
 
 const HomeScreen = () => {
+
+    const handleLogout = async() => {
+        updateUser({
+            command:"logout",
+            data:{}
+        })
+    };
+
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Welcome to LucaMovieMobile!</Text>
             <Text style={styles.subtitle}>This is the home screen.</Text>
+            <SimpleButton title="Log Out" onPress={handleLogout} />
         </View>
     );
 };

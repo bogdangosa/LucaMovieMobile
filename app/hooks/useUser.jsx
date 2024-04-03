@@ -9,24 +9,41 @@ const useUser = () => {
     },[]); 
 
     const getUserData = async () => {
-
-    }
-
-    const loginUser = async (data) => {
         try {
-            console.log(process.env.EXPO_SERVER_ADRESS);
-            const response = await axios.post(process.env.EXPO_SERVER_ADRESS+'/api/login', {
-                email: data.email,
-                password: data.password
-            });
-            console.log("Login successful:", response.data);
-            setUser({userId:response.data.useruserId});
+            const response = await axios.get(process.env.EXPO_PUBLIC_SERVER_ADDRESS+'/api/isAuthenticated');
+            if (response.data.code == 0) {
+                setUser({userId: response.data.userId});
+            }
 
         } catch (error) {
             console.error("Error occurred during login:", error);
         }
-        console.log("response");
+    }
 
+    const loginUser = async (data) => {
+        try {
+            const response = await axios.post(process.env.EXPO_PUBLIC_SERVER_ADDRESS+'/api/login', {
+                email: data.email,
+                password: data.password
+            });
+            console.log("Login successful:", response.data);
+            if (response.data.code == 0) {
+                setUser({userId: response.data.useruserId});
+            }
+        } catch (error) {
+            console.error("Error occurred during login:", error);
+        }
+    }
+
+    const logoutUser = async () => {
+        try {
+            const response = await axios.get(process.env.EXPO_PUBLIC_SERVER_ADDRESS+'/api/logout');
+            if (response.code == 0){
+                setUser({userId: -1});
+            }
+        } catch (error) {
+            console.error("Error occurred during login:", error);
+        }
     }
     
     const signupUser = async (data) => {
@@ -38,7 +55,9 @@ const useUser = () => {
             case "login":
                 loginUser(data.data);
                 break;
-                
+            case "logout":
+                logoutUser();
+                break;
             default:
                 break;
         }
